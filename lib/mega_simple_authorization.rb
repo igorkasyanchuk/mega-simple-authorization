@@ -64,7 +64,8 @@ module MegaSimpleAuthorization
     end
     
     def check_authorization_access
-      return true if !current_user || authorization_access_information[params[:action]].nil?
+      return true unless authorization_access_information[params[:action]]
+      return access_denied_due_to_role unless current_user
       user_roles = current_user.roles.collect{ |role| role.name }
       return access_denied_due_to_role unless authorization_access_information[params[:action]].any? { |action_role| user_roles.include?(action_role) }
       true
