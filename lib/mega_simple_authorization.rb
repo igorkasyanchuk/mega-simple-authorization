@@ -55,12 +55,7 @@ module MegaSimpleAuthorization
   
     # stub, see application controller
     def access_denied_due_to_role
-      if current_user
-        render :text => "Insufficient rights!"
-        return false
-      else
-        super
-      end
+      render :text => "Insufficient rights!"
     end
     
     def check_authorization_access
