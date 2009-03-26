@@ -43,6 +43,18 @@ It also needs an `access_denied_due_to_role` method, so that it knows where to s
 The `current_user` method are provided by default in restful-authentication/Authlogic.
 The `access_denied_due_to_role` method defined in plugin and can be overriden in ApplicationController.
 
+####Sample of access_denied_due_to_role`:
+	  def access_denied_due_to_role
+		respond_to do |format|
+		   format.html do
+			 render :template => 'app/views/mega_simple_authorization/access_denied.html.erb'
+		   end
+		   format.js do
+			 render :template => 'app/views/mega_simple_authorization/access_denied.js.rjs'
+		   end
+		end
+	  end
+
 Available Methods
 ==================================
 
