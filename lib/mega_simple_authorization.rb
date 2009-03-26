@@ -39,10 +39,18 @@ module MegaSimpleAuthorization
       end
     end
     
-    # stub, see application controller
+
     def access_denied_due_to_role
-      render :text => "Insufficient rights!"
+      respond_to do |format|
+        format.html do
+          render :template => 'app/views/mega_simple_authorization/access_denied.html.erb'
+        end
+        format.js do
+          render :template => 'app/views/mega_simple_authorization/access_denied.js.rjs'
+        end
     end
+  end
+   
     
     def check_authorization_access
       return true unless authorization_access_information[params[:action]]
